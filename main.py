@@ -5,9 +5,9 @@ from Maze import Maze
 
 pygame.init()
 
-W = 60
-H = 40
-SCALE = 20
+W = 30
+H = 20
+SCALE = 40
 
 start, goal = (0, 0), (W-1, H-1)
 
