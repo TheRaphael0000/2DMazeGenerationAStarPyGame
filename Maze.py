@@ -88,7 +88,8 @@ class Maze:
             current = sorted_keys_f_score[0]
 
             if current == goal:
-                self.solutions[(start, goal)] = self.reconstruct_path(came_from, current)
+                self.solutions[(start, goal)] = self.reconstruct_path(
+                    came_from, current)
                 return self.solutions[(start, goal)]
 
             open_set.remove(current)
@@ -98,7 +99,8 @@ class Maze:
                 if neighbor in closed_set:
                     continue
 
-                tentative_g_score = g_score[current] + self.dist_between(current, neighbor)
+                tentative_g_score = g_score[current] + \
+                    self.dist_between(current, neighbor)
 
                 if neighbor not in open_set:
                     open_set.add(neighbor)
@@ -107,7 +109,8 @@ class Maze:
 
                 came_from[neighbor] = current
                 g_score[neighbor] = tentative_g_score
-                f_score[neighbor] = g_score[neighbor] + self.heuristic_cost_estimate(neighbor, goal)
+                f_score[neighbor] = g_score[neighbor] + \
+                    self.heuristic_cost_estimate(neighbor, goal)
 
     def reconstruct_path(self, came_from, current):
         total_path = [current]
@@ -144,7 +147,6 @@ class Maze:
     def heuristic_cost_estimate(self, f, t):
         return (f[0] - t[0]) ** 2 + (f[1] - t[1]) ** 2
 
-
     def mouse_pos(self):
         pos = pygame.mouse.get_pos()
         x = pos[0] // self.scale
@@ -178,6 +180,8 @@ class Maze:
 
     def draw_path(self, screen, path):
         for a, b in zip(path, path[1:]):
-            start_pos = (a[0] * self.scale + self.scale // 2, a[1] * self.scale + self.scale // 2)
-            end_pos = (b[0] * self.scale + self.scale // 2, b[1] * self.scale + self.scale // 2)
+            start_pos = (a[0] * self.scale + self.scale // 2,
+                         a[1] * self.scale + self.scale // 2)
+            end_pos = (b[0] * self.scale + self.scale // 2,
+                       b[1] * self.scale + self.scale // 2)
             line(screen, (255, 0, 255), start_pos, end_pos)

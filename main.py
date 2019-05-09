@@ -18,7 +18,7 @@ HEIGHT = SCALE * H
 size = [WIDTH + 1, HEIGHT + 1]
 screen = pygame.display.set_mode(size)
 
-pygame.display.set_caption("Maze generation with A Star")
+pygame.display.set_caption("Maze")
 
 frame = 0
 done = False
